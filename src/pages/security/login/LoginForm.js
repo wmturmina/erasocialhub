@@ -10,6 +10,9 @@ import FormHelperText from '@material-ui/core/FormHelperText'
 import Link from '@material-ui/core/Link'
 import indigo from '@material-ui/core/colors/indigo'
 
+import Typography from '@material-ui/core/Typography'
+import FacebookLogin from 'react-facebook-login'
+
 const styles = theme => {
   return ({
     link: {
@@ -31,6 +34,10 @@ const styles = theme => {
     },
     logoContainer: {
       paddingBottom: '15px',
+      textAlign: 'center'
+    },
+    facebook: {
+      paddingTop: '30px',
       textAlign: 'center'
     },
     spacer: {
@@ -77,6 +84,13 @@ class LoginForm extends Component {
     console.warn('Login')
   }
 
+  responseFacebook = (response) => {
+    console.warn(response)
+  }
+
+  componentClicked =() => {
+    console.warn('clicou')
+  }
 
   render() {
     const { errorMessage, loggingIn } = this.state
@@ -145,6 +159,20 @@ class LoginForm extends Component {
             >
               Login
             </Button>
+          </Grid>
+          <Grid item xs={12} className={classes.facebook}>
+            <Typography variant="button" color="primary">ou</Typography>
+          </Grid>
+          <Grid item xs={12} className={classes.facebook}>
+            <FacebookLogin
+              appId="437523570132052"
+              autoLoad={true}
+              fields="name,email,picture"
+              onClick={this.componentClicked}
+              callback={this.responseFacebook}
+              textButton="Login com o Facebook"
+              language="pt_BR"
+            />
           </Grid>
         </Grid>
       </Paper>
