@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { Link as LinkAction } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
@@ -9,9 +11,9 @@ import Grid from '@material-ui/core/Grid'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import Link from '@material-ui/core/Link'
 import indigo from '@material-ui/core/colors/indigo'
-
 import Typography from '@material-ui/core/Typography'
 import FacebookLogin from 'react-facebook-login'
+import { loginSuccededAction, loginFailedAction } from '../../../actions'
 
 const styles = theme => {
   return ({
@@ -85,7 +87,7 @@ class LoginForm extends Component {
   }
 
   responseFacebook = (response) => {
-    console.warn(response)
+    this.props.loginSuccededAction(response)
   }
 
   componentClicked =() => {
@@ -112,7 +114,7 @@ class LoginForm extends Component {
       <Paper className={classes.container}>
         <Grid container>
           <Grid item xs={12} className={classes.logoContainer}>
-            <img src="/dist/logo.gif" />
+            <img src="logo.gif" />
           </Grid>
           <Grid item xs={12}>
             <TextField
@@ -166,12 +168,12 @@ class LoginForm extends Component {
           <Grid item xs={12} className={classes.facebook}>
             <FacebookLogin
               appId="437523570132052"
-              autoLoad={true}
               fields="name,email,picture"
               onClick={this.componentClicked}
               callback={this.responseFacebook}
               textButton="Login com o Facebook"
               language="pt_BR"
+              scope="public_profile,pages_show_list,manage_pages"
             />
           </Grid>
         </Grid>
@@ -181,7 +183,17 @@ class LoginForm extends Component {
 }
 
 LoginForm.propTypes = {
+  loginSuccededAction: PropTypes.func,
+  loginFailedAction: PropTypes.func,
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles, { name: 'LoginForm' })(LoginForm)
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    loginSuccededAction,
+    loginFailedAction
+  }, dispatch)
+}
+
+export default withStyles(styles, { name: 'LoginForm' })(connect(null, mapDispatchToProps)(LoginForm))

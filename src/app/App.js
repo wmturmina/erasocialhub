@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import {
   BrowserRouter,
@@ -40,12 +41,13 @@ class App extends Component {
     }
   }
 
-
   render() {
     const {
-      classes
+      classes,
+      auth
     } = this.props
-    const loggedIn = false
+    const loggedIn = Boolean(auth)
+    console.warn('auth', auth)
     if (loggedIn) {
       return (
 
@@ -74,8 +76,14 @@ class App extends Component {
 }
 
 App.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object,
+  auth: PropTypes.object
 }
 
+function mapStateToProps(state) {
+  return {
+    auth: state.auth
+  }
+}
 
-export default withStyles(styles, { name: 'App' })(App)
+export default withStyles(styles, { name: 'App' })(connect(mapStateToProps)(App))

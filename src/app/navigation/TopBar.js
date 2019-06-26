@@ -4,14 +4,11 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
-import {
-  Logo
-} from '../../assets'
 
 
 const styles = theme => ({
   logoContainer: {
-    width: 180,
+    width: 100,
     marginRight: theme.spacing(2)
   }
 })
@@ -25,7 +22,7 @@ class TopBar extends Component {
       <AppBar position="fixed" color="inherit">
         <Toolbar>
           <div className={classes.logoContainer}>
-            <Logo />
+            <img width={72} height={36} src="logo.gif" />
           </div>
           <Typography variant="h6" color="inherit" style={{ flex: 1 }}>
             ERA Social Hub

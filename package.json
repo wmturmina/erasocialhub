@@ -1,11 +1,11 @@
 {
-  "name": "delivery-dashboard",
+  "name": "erasocialhub",
   "version": "1.0.0",
-  "description": "Delivery Dashboard",
+  "description": "Era Social HUB",
   "main": "index.js",
   "private": true,
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --port 8090",
+    "start": "node server.js",
     "build": "webpack --optimize-minimize --progress --colors --profile --mode=production --define process.env.NODE_ENV='\"production\"'",
     "dev": "webpack --watch --info-verbosity verbose --progress --colors --mode=development --define process.env.NODE_ENV='\"development\"'",
     "build:rs": "react-scripts build"
@@ -71,9 +71,12 @@
     "chart.js": "^2.8.0",
     "classnames": "2.2.6",
     "date-fns": "2.0.0-alpha.27",
+    "express": "^4.17.1",
+    "express-favicon": "^2.0.1",
     "js-md5": "^0.7.3",
     "lodash": "4.17.11",
     "material-table": "^1.39.0",
+    "path": "^0.12.7",
     "prop-types": "15.7.2",
     "react": "^16.8.6",
     "react-chartjs-2": "^2.7.6",
