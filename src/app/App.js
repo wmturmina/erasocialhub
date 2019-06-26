@@ -7,6 +7,7 @@ import {
   Switch,
   Route
 } from 'react-router-dom'
+import _ from 'lodash'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import TopBar from './navigation/TopBar'
 import { injectComponent } from '../functions'
@@ -46,7 +47,7 @@ class App extends Component {
       classes,
       auth
     } = this.props
-    const loggedIn = Boolean(auth)
+    const loggedIn = Boolean(_.get(auth, 'accessToken'))
     console.warn('auth', auth)
     if (loggedIn) {
       return (
