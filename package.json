@@ -74,7 +74,7 @@
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
     "js-md5": "^0.7.3",
-    "lodash": "4.17.11",
+    "lodash": "4.17.21",
     "material-table": "^1.39.0",
     "path": "^0.12.7",
     "prop-types": "15.7.2",
